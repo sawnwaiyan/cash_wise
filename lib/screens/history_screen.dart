@@ -247,7 +247,7 @@ class _EntryTile extends StatelessWidget {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (_) => _EntryOptions(entry: entry),
+      builder: (_) => _EntryOptions(entry: entry, parentContext: context),
     );
   }
 
@@ -311,13 +311,14 @@ class _EntryTile extends StatelessWidget {
 
 // ── Entry Options Sheet ───────────────────────────
 class _EntryOptions extends StatelessWidget {
-  final Entry entry;
-  const _EntryOptions({required this.entry});
+  final Entry        entry;
+  final BuildContext parentContext;
+  const _EntryOptions({required this.entry, required this.parentContext});
 
   void _edit(BuildContext context) {
     Navigator.pop(context);
     showModalBottomSheet(
-      context:            context,
+      context:            parentContext,
       isScrollControlled: true,
       backgroundColor:    AppTheme.navyCard,
       shape: const RoundedRectangleBorder(
@@ -328,9 +329,9 @@ class _EntryOptions extends StatelessWidget {
   }
 
   void _confirmDelete(BuildContext context) {
-    Navigator.pop(context);
+    Navigator.pop(context); // close the options sheet
     showDialog(
-      context: context,
+      context: parentContext, // use parent context — sheet is already closed
       builder: (_) => AlertDialog(
         backgroundColor: AppTheme.navyCard,
         title: const Text('Delete Entry',
@@ -342,14 +343,14 @@ class _EntryOptions extends StatelessWidget {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => Navigator.pop(parentContext),
             child: const Text('Cancel'),
           ),
           TextButton(
             onPressed: () async {
-              Navigator.pop(context);
-              await context.read<EntryProvider>().deleteEntry(entry.id!);
-              await context.read<BudgetProvider>().refreshSpend();
+              Navigator.pop(parentContext);
+              await parentContext.read<EntryProvider>().deleteEntry(entry.id!);
+              await parentContext.read<BudgetProvider>().refreshSpend();
             },
             style: TextButton.styleFrom(foregroundColor: AppTheme.danger),
             child: const Text('Delete'),

@@ -1,6 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Storage permissions for saving PDF to Downloads folder -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="29"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32"/>
+
     <application
-        android:label="cashwise"
+        android:label="Cash Wise"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

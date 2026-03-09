@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'home_screen.dart';
 import 'history_screen.dart';
-// Placeholder imports — replace in later phases
-// import 'budget_screen.dart';
-// import 'export_screen.dart';
+import 'budget_screen.dart';
+import 'export_screen.dart';
 
 class MainShell extends StatefulWidget {
   const MainShell({super.key});
@@ -21,8 +20,8 @@ class _MainShellState extends State<MainShell> {
   final List<Widget> _screens = const [
     HomeScreen(),
     HistoryScreen(),
-    _PlaceholderScreen(label: 'Budget',   icon: Icons.account_balance_wallet),
-    _PlaceholderScreen(label: 'Export',   icon: Icons.picture_as_pdf),
+    BudgetScreen(),
+    ExportScreen(),
   ];
 
   @override
