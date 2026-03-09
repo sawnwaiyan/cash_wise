@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'home_screen.dart';
-// Placeholder imports — replace with real screens in later phases
-// import 'history_screen.dart';
+import 'history_screen.dart';
+// Placeholder imports — replace in later phases
 // import 'budget_screen.dart';
 // import 'export_screen.dart';
 
@@ -20,7 +20,7 @@ class _MainShellState extends State<MainShell> {
   // when switching tabs. Replace placeholders as phases complete.
   final List<Widget> _screens = const [
     HomeScreen(),
-    _PlaceholderScreen(label: 'History',  icon: Icons.history),
+    HistoryScreen(),
     _PlaceholderScreen(label: 'Budget',   icon: Icons.account_balance_wallet),
     _PlaceholderScreen(label: 'Export',   icon: Icons.picture_as_pdf),
   ];
